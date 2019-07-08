@@ -1,4 +1,4 @@
-CREATE TABLE public."event"
+CREATE TABLE IF NOT EXISTS public."event"
 (
     "id" uuid NOT NULL,
     component character varying NOT NULL,
@@ -7,18 +7,15 @@ CREATE TABLE public."event"
     "createdAt" timestamp with time zone NOT NULL,
     message character varying NOT NULL,
     data character varying,
-    PRIMARY KEY ("Id")
+    PRIMARY KEY ("id")
 )
 WITH (
     OIDS = FALSE
 );
-
-ALTER TABLE public."Event"
-    OWNER to postgres;
     
     
-CREATE INDEX idx_event_component ON public."event" ((lower(component)));
-CREATE INDEX idx_event_createdAt ON public."event" ("createdAt");
-CREATE INDEX idx_event_email ON public."event" (lower(email));
-CREATE INDEX idx_event_environment ON public."event" (lower(environment));
-CREATE INDEX idx_event_message ON public."event" USING GIN (to_tsvector('english', message));
+CREATE INDEX IF NOT EXISTS idx_event_component ON public."event" ((lower(component)));
+CREATE INDEX IF NOT EXISTS idx_event_createdAt ON public."event" ("createdAt");
+CREATE INDEX IF NOT EXISTS idx_event_email ON public."event" (lower(email));
+CREATE INDEX IF NOT EXISTS idx_event_environment ON public."event" (lower(environment));
+CREATE INDEX IF NOT EXISTS idx_event_message ON public."event" USING GIN (to_tsvector('english', message));

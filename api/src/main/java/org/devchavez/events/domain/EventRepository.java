@@ -1,21 +1,37 @@
 package org.devchavez.events.domain;
 
-import java.util.UUID;
+import org.devchavez.events.persistence.PEvent;
+import org.devchavez.events.persistence.PEventRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
-import javax.persistence.EntityManager;
+@Component
+public class EventRepository {
 
-import org.springframework.data.jpa.repository.support.SimpleJpaRepository;
-import org.springframework.stereotype.Repository;
+	private final PEventRepository repo;
 
-@Repository
-public class EventRepository extends SimpleJpaRepository<Event, UUID> {
+	@Autowired
+	public EventRepository(PEventRepository repo) {
+		this.repo = repo;
+	}
 
-	public EventRepository(Class<Event> domainClass, EntityManager em) {
-		super(domainClass, em);
+	public void create(Event event) {
+		PEvent pEvent = this.toPEvent(event);
+		
+		this.repo.save(pEvent);
 	}
 	
-	@Override
-	public <S extends Event> S save(S event) {
-		return event;
+	private PEvent toPEvent(Event event) {
+		PEvent pEvent = new PEvent();
+		
+		pEvent.setId(event.getId());
+		pEvent.setComponent(event.getComponent());
+		pEvent.setCreatedAt(event.getCreatedAt());
+		pEvent.setData(event.getData());
+		pEvent.setEmail(event.getEmail());
+		pEvent.setEnvironment(event.getEnvironment());
+		pEvent.setMessage(event.getMessage());
+		
+		return pEvent;
 	}
 }

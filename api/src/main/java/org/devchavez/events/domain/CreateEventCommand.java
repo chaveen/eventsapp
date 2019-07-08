@@ -1,10 +1,8 @@
 package org.devchavez.events.domain;
 
 import java.time.OffsetDateTime;
-import java.util.UUID;
 
-public class Event {
-	private UUID id;
+public class CreateEventCommand {
 	private OffsetDateTime createdAt;
 	private String email;
 	private String environment;
@@ -12,20 +10,15 @@ public class Event {
 	private String message;
 	private String data;
 	
-	public Event(UUID id, OffsetDateTime createdAt, String email, String environment, String component, String message,
-			String data) {
-		super();
-		this.id = id;
+	public CreateEventCommand(OffsetDateTime createdAt, String email, String environment, String component,
+			String message, String data) {
+	
 		this.createdAt = createdAt;
 		this.email = email;
 		this.environment = environment;
 		this.component = component;
 		this.message = message;
 		this.data = data;
-	}
-
-	public UUID getId() {
-		return id;
 	}
 
 	public OffsetDateTime getCreatedAt() {
