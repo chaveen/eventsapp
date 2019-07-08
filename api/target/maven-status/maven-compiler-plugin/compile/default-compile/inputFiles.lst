@@ -1,0 +1,8 @@
+/mnt/c/Projects/eventservice/target/generated-sources/main/java/org/devchavez/events/api/EventsApi.java
+/mnt/c/Projects/eventservice/target/generated-sources/main/java/org/devchavez/events/domain/SearchCriteria.java
+/mnt/c/Projects/eventservice/src/main/java/org/devchavez/events/Configuration.java
+/mnt/c/Projects/eventservice/src/main/java/org/devchavez/events/Application.java
+/mnt/c/Projects/eventservice/src/main/java/org/devchavez/events/domain/repository/EventRepository.java
+/mnt/c/Projects/eventservice/src/main/java/org/devchavez/events/controller/EventApiImpl.java
+/mnt/c/Projects/eventservice/target/generated-sources/main/java/org/devchavez/events/api/ApiUtil.java
+/mnt/c/Projects/eventservice/target/generated-sources/main/java/org/devchavez/events/domain/Event.java
