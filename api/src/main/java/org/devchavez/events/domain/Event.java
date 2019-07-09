@@ -4,7 +4,7 @@ import java.time.OffsetDateTime;
 import java.util.UUID;
 
 /**
- * Event domain object
+ * Event Aggregate Root
  *
  */
 public class Event {

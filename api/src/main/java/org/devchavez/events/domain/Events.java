@@ -4,8 +4,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 /**
- * Event Aggregate Root. Delegate Event related Commands and
- * Queries to appropriate handlers
+ * Event Command/Query handler. Delegates Event related Commands and
+ * Queries to appropriate singular Command/Query handlers
  *
  */
 @Service
