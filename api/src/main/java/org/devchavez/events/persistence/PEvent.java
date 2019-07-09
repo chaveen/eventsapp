@@ -11,7 +11,7 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
-@Entity
+@Entity(name = "event")
 @Table(name = "event", schema = "public")
 public class PEvent {
 	private UUID id;
@@ -22,12 +22,12 @@ public class PEvent {
 	private String message;
 	private String data;
 
+	@Id
 	@GeneratedValue(generator = "UUID")
 	@GenericGenerator(
 		name = "UUID",
 		strategy = "org.hibernate.id.UUIDGenerator"
 	)
-	@Id
 	@Column(updatable = false, nullable = false)
 	public UUID getId() {
 		return id;
@@ -37,7 +37,7 @@ public class PEvent {
 		this.id = id;
 	}
 
-	@Column(name = "createdAt", updatable = false, nullable = false)
+	@Column(updatable = false, nullable = false)
 	public OffsetDateTime getCreatedAt() {
 		return createdAt;
 	}

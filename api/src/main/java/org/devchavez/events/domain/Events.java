@@ -1,5 +1,9 @@
 package org.devchavez.events.domain;
 
+import java.util.List;
+import java.util.Optional;
+
+import org.devchavez.events.domain.support.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,9 +17,9 @@ public class Events {
 		this.repo = repo;
 	}
 	
-	public void handle(CreateEventCommand cmd) {
+	public CreateEventEvent handle(CreateEventCommand cmd) {
 		if (cmd.getComponent() == null) {
-			
+			throw new ValidationException("Component field is mandatory");
 		}
 		
 		Event event = new Event(null, 
@@ -26,6 +30,28 @@ public class Events {
 				cmd.getMessage(),
 				cmd.getData());
 		
-		this.repo.create(event);
+		event = this.repo.create(event);
+		
+		CreateEventEvent result = new CreateEventEvent(event.getId());
+		
+		return result;
+	}
+	
+	public GetEventQueryResult handle(GetEventQuery query) {
+		Optional<Event> oEvent = this.repo.get(query.getEventId());
+		
+		GetEventQueryResult result = new GetEventQueryResult(oEvent);
+		
+		return result;
+	}
+	
+	public SearchEventQueryResult handle(SearchEventQuery query) {
+		List<Event> result = this.repo.search(query.getCreatedDate(), 
+				query.getEmail(),
+				query.getEnvironment(), 
+				query.getComponent(), 
+				query.getMessage());
+		
+		return new SearchEventQueryResult(result);
 	}
 }

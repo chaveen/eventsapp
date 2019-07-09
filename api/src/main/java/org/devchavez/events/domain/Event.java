@@ -12,7 +12,12 @@ public class Event {
 	private String message;
 	private String data;
 	
-	public Event(UUID id, OffsetDateTime createdAt, String email, String environment, String component, String message,
+	public Event(UUID id, 
+			OffsetDateTime createdAt, 
+			String email, 
+			String environment, 
+			String component, 
+			String message,
 			String data) {
 		super();
 		this.id = id;

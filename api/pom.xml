@@ -37,8 +37,8 @@
 							<inputSpec>${project.basedir}/src/main/resources/events-api.yaml</inputSpec>
 							<generatorName>spring</generatorName>
 							<output>${project.build.directory}/generated-sources</output>
-							<modelPackage>org.devchavez.events.api.model</modelPackage>
-							<apiPackage>org.devchavez.events.api</apiPackage>
+							<modelPackage>org.devchavez.events.api.rest.model</modelPackage>
+							<apiPackage>org.devchavez.events.api.rest</apiPackage>
 							<generateApis>true</generateApis>
 							<generateModels>true</generateModels>
 							<generateSupportingFiles>false</generateSupportingFiles>

@@ -1,4 +1,4 @@
-package org.devchavez.events.advice;
+package org.devchavez.events.api.rest;
 
 import org.devchavez.events.domain.support.ValidationException;
 import org.springframework.http.HttpStatus;

@@ -30,6 +30,36 @@ paths:
           description: "Validation exception"
         201:
           description: "Successful"
+          content:
+            application/json:
+              schema:
+                type: "object"
+                title: "Event reference"
+                description: "Event reference"
+                properties:
+                  id:
+                    description: "Event Id"
+  /events/{id}:
+    get:
+      summary: "Get Event"
+      operationId: "getEvent"
+      parameters: 
+        - name: "id"
+          in: "path"
+          required: true
+          description: "Event Id"
+          schema:
+            type: "string"
+            format: "uuid"
+      responses:
+        404:
+          description: "Not found"
+        200:
+          description: "new Event"
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Event"
   /events/search:
     post:
       summary: "Search Event by criteria"
@@ -43,10 +73,10 @@ paths:
               title: "SearchCriteria"
               description: "Search criteria"
               properties:
-                createdAt: 
-                  description: "Creation Timestamp"
+                createdDate: 
+                  description: "Creation date"
                   type: "string"
-                  format: "date-time"
+                  format: "date"
                 email: 
                   description: "Email address"
                   type: "string"
