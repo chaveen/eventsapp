@@ -39,6 +39,8 @@ Event is consisted of following attributes
 2. Run
 
    ```bash
+   docker-compose build event-api
+   docker-compose build event-db
    docker-compose up event-api
    ```
 
