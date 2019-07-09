@@ -18,7 +18,7 @@ public interface PEventRepository extends CrudRepository<PEvent, UUID> {
 			+ 	" AND (:email IS NULL OR e.email = CAST(:email AS VARCHAR))"
 			+ 	" AND (:environment IS NULL OR e.environment = CAST(:environment AS VARCHAR))"
 			+ 	" AND (:component IS NULL OR e.component = CAST(:component AS VARCHAR))"
-			+   " AND (:message IS NULL OR to_tsvector('english', e.message) @@ to_tsquery('english', CAST(:message AS VARCHAR)))",
+			+   " AND (:message IS NULL OR to_tsvector('english', e.message) @@ plainto_tsquery('english', CAST(:message AS VARCHAR)))",
 			nativeQuery = true)
 	List<PEvent> search(@Param("createdDate") String createdDate,
 			@Param("email") String email, 

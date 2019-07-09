@@ -1,0 +1,22 @@
+version: "3"
+services:
+  event-api:
+    depends_on:
+      - event-db
+    build:
+      context: ./api
+    ports:
+      - "8080:8080"
+    networks:
+      - event-api-net
+  event-db:
+    build:
+      context: ./db
+    ports:
+      - "5433:5432"
+    networks:
+      event-api-net:
+        aliases:
+          - eventdb
+networks:
+  event-api-net:
