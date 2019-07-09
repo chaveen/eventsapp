@@ -48,7 +48,7 @@ Event is consisted of following attributes
 
 Use the https://www.getpostman.com/collections/9317068f55a2a0ea6231 *Postman* API collection to test the API.
 
-[^]: Please refer to https://learning.getpostman.com/docs/postman/collections/intro_to_collections to learn about importing Postman collections
+[^]: Please refer to https://learning.getpostman.com/docs/postman/collections/intro_to_collections in case to learn more about importing Postman collections
 
 
 
