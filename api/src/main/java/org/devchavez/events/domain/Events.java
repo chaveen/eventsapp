@@ -1,57 +1,49 @@
 package org.devchavez.events.domain;
 
-import java.util.List;
-import java.util.Optional;
-
-import org.devchavez.events.domain.support.ValidationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * Event Aggregate Root. Delegate Event related Commands and
+ * Queries to appropriate handlers
+ *
+ */
 @Service
 public class Events {
 
-	private final EventRepository repo;
+	private final CreateEventCommandHandler createEventHandler;
+	private final SearchEventQueryHandler searchEventQueryHandler;
+	private final GetEventQueryHandler getEventQueryHandler;
 
+	/*
+	 * FIXME: Need to find type enforced delegator method, But 
+	 * the initial thought of having
+	 * 
+	 * public class Event implements CommandQueryHandler<CreateEventCommandHandler, CreateEventCommandEvent>,
+	 * 		CommandQueryHandler<GetEventQuery, GetEventQueryResult>,
+	 * 		CommandQueryHandler<SearchEventQuery, SearchEventQueryResult> {} 
+	 * 
+	 * didn't work because of a short coming of Java Compiler
+	 */
 	@Autowired
-	public Events(EventRepository repo) {
-		this.repo = repo;
+	public Events(CreateEventCommandHandler createEventHandler,
+			SearchEventQueryHandler searchEventQueryHandler,
+			GetEventQueryHandler getEventQueryHandler) {
+		this.createEventHandler = createEventHandler;
+		this.searchEventQueryHandler = searchEventQueryHandler;
+		this.getEventQueryHandler = getEventQueryHandler;
 	}
 	
 	public CreateEventEvent handle(CreateEventCommand cmd) {
-		if (cmd.getComponent() == null) {
-			throw new ValidationException("Component field is mandatory");
-		}
-		
-		Event event = new Event(null, 
-				cmd.getCreatedAt(), 
-				cmd.getEmail(), 
-				cmd.getEnvironment(), 
-				cmd.getComponent(), 
-				cmd.getMessage(),
-				cmd.getData());
-		
-		event = this.repo.create(event);
-		
-		CreateEventEvent result = new CreateEventEvent(event.getId());
-		
-		return result;
+		return this.createEventHandler.handle(cmd);
 	}
 	
 	public GetEventQueryResult handle(GetEventQuery query) {
-		Optional<Event> oEvent = this.repo.get(query.getEventId());
-		
-		GetEventQueryResult result = new GetEventQueryResult(oEvent);
-		
-		return result;
+		return this.getEventQueryHandler.handle(query);
 	}
 	
 	public SearchEventQueryResult handle(SearchEventQuery query) {
-		List<Event> result = this.repo.search(query.getCreatedDate(), 
-				query.getEmail(),
-				query.getEnvironment(), 
-				query.getComponent(), 
-				query.getMessage());
-		
-		return new SearchEventQueryResult(result);
+		return this.searchEventQueryHandler.handle(query);
 	}
+	
 }

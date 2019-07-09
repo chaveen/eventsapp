@@ -3,6 +3,10 @@ package org.devchavez.events.domain;
 import java.time.OffsetDateTime;
 import java.util.UUID;
 
+/**
+ * Event domain object
+ *
+ */
 public class Event {
 	private UUID id;
 	private OffsetDateTime createdAt;

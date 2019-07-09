@@ -13,6 +13,9 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.util.StdDateFormat;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
+/**
+ * Setup common startup configurations here
+ */
 @org.springframework.context.annotation.Configuration
 @EnableWebMvc
 public class Configuration implements WebMvcConfigurer {

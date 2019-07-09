@@ -11,6 +11,10 @@ import org.devchavez.events.persistence.PEventRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+/**
+ * Event domain object repository
+ *
+ */
 @Component
 public class EventRepository {
 

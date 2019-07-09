@@ -8,6 +8,10 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+/**
+ * This is the ORM repository for Event data
+ *
+ */
 @Repository
 public interface PEventRepository extends CrudRepository<PEvent, UUID> {
 	

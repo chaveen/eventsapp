@@ -11,6 +11,10 @@ import javax.persistence.Table;
 
 import org.hibernate.annotations.GenericGenerator;
 
+/**
+ * This represents ORM for Event data
+ *
+ */
 @Entity(name = "event")
 @Table(name = "event", schema = "public")
 public class PEvent {
